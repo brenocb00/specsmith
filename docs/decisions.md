@@ -123,3 +123,7 @@ Build one generic, reusable skill that runs a spec-driven workflow on top of Mat
 **Why:** Testing `setup` on a real production project showed that copying `AGENTS.md` into `rules.md` creates two sources of truth that drift, which that project's `CLAUDE.md` explicitly forbids.
 **Status:** decided
 
+## D-24 - Tightened rules after the production-project test
+**Decision:** Four rules were tightened after running grill, spec, and plan on two real features of a production project: `A-NN` entries come only from "assume the rest", and grill closes with a final round for anything still open; an interpretation between readings is a spec gap the user decides; round numbering continues from the highest `D-NN` or `A-NN` in the ledger; the conversation language is stated as never coming from the language of the instructions.
+**Why:** In the test, grill recorded four assumptions nobody was asked about, spec settled two interpretations alone, round IDs collided with assumption IDs, and plan answered in English twice while everything else was in Portuguese.
+**Status:** decided

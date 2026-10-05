@@ -58,6 +58,9 @@ Apply these moves during every round:
 
 The phase is done when `rounds.md` is done and every coverage category is decided, out of scope, or assumed.
 
+Before closing, walk the coverage categories once more.
+Anything still open, including points that feel obvious (no new permission, an adjacent flow left unchanged), goes to the user as a final round.
+
 1. Set the ledger status to `grilled`.
 2. Verify on disk: the ledger, the glossary, any ADRs.
 3. Report the counts of decisions, assumptions, glossary terms, and ADRs, plus any category marked out of scope.

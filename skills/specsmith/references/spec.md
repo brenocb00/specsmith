@@ -14,6 +14,8 @@ Every statement in the spec traces to a ledger entry.
 
 Walk the spec format (`formats/spec.md`) section by section and list every statement you would need that no ledger entry decides.
 Wording choices and restatements of decided facts are not gaps.
+An interpretation is a gap: when a ledger entry admits two readings with different behaviour, or a case falls between entries, the user picks the reading.
+Keeping today's behaviour in an uncovered case is also a decision, and gets asked.
 
 When the list is not empty, close the gaps with rounds (`rounds.md`) before writing, recording each answer in the ledger as usual.
 When the gaps reveal that a whole coverage category of `grill.md` was never explored, stop instead and suggest `/specsmith grill` to resume the full interview.

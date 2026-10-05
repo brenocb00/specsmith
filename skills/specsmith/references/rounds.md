@@ -13,7 +13,8 @@ The **frontier** is every open decision whose prerequisites are already settled:
 ## A round
 
 Ask the whole frontier in one round.
-Number the questions with the ledger IDs they will receive, and give your recommended answer for each.
+Number the questions with the ledger IDs they will receive: read the ledger, take the highest `D-NN` or `A-NN` number in the feature, and continue from it.
+Give your recommended answer for each.
 Then wait for the user's answers.
 
 ```
@@ -53,6 +54,7 @@ Decisions belong to the user: put each one to them and wait.
 
 The user may end the interview early at any time ("assume the rest", "good enough", "use your recommendations").
 Record every remaining frontier question as an assumption (`A-NN`) holding your recommended answer, then close.
+That instruction is the only source of an `A-NN` entry: every other open point, however obvious it seems, goes to the user as a question.
 Assumptions stay visible: the spec lists them, and `tasks` flags every task that depends on one.
 
 ## Done

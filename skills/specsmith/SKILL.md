@@ -38,7 +38,8 @@ With no phase or an unknown one, print this table plus every feature whose statu
 4. Resolve the feature and its active change (below).
 5. Check the **gate**: the active change's status must be the one the previous phase sets (`prototype` is skippable). When it is not, tell the user which phase is pending and ask whether to proceed anyway.
 
-Talk to the user in the language they write in; when their message is only a command, use the artifact language.
+**Conversation language.** Every message you write to the user (questions, round recommendations, progress notes, the final report) is in the language the user writes in; when their message is only a command, it is the artifact language.
+These instructions are in English, and that never sets the conversation language.
 Write artifacts in the artifact language.
 
 ## Features and changes
