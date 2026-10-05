@@ -17,13 +17,17 @@ Gather the facts yourself:
 - existing agent rules: `AGENTS.md`, `CLAUDE.md`, `.github/copilot-instructions.md`, `.cursor/rules`, `.agents/rules/`, `CONTRIBUTING.md`;
 - existing `specs/` and `docs/` trees, and any earlier spec-driven tooling (`.specify/`).
 
-Treat existing agent rules as the main import source: each rule in them is a candidate for `rules.md`.
+Existing agent rules decide the **authority** question first:
+
+- When the project already keeps its rules in an agent file every session loads (`AGENTS.md`, `CLAUDE.md`, and the like), that file stays the authority. `rules.md` names it and holds only what is specific to specsmith, so the project keeps one source of truth.
+- When no such file exists, or the user wants `rules.md` to become the source, import each existing rule as a candidate for `rules.md`.
 
 ## 3. Run rounds
 
 Follow `rounds.md`, recording answers straight into `rules.md` rather than a ledger (setup belongs to the project, not to a feature).
 Cover every section of `formats/rules.md`:
 
+- **Authority**: which existing rule files `rules.md` defers to, decided as above. Every later section skips what those files already say.
 - **Spec paths**: flat `specs/<feature>/`, or a hierarchy that mirrors the product (for example `specs/<system>/<module>/<scope>/`). Ask how to classify a feature when it is hierarchical.
 - **Commands**: present the commands you found and ask which are canonical.
 - **Architecture and conventions**: present each inferred pattern as a finding and ask "rule or accident?". A rule enters `rules.md` with its reason.

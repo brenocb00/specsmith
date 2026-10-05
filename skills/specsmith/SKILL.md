@@ -32,7 +32,7 @@ With no phase or an unknown one, print this table plus every feature whose statu
 
 `setup` runs steps 1 and 2; the other phases run all five.
 
-1. Read `docs/specsmith/rules.md` when it exists. Its rules override the defaults in the references.
+1. Read `docs/specsmith/rules.md` when it exists, plus every authority file it names. Their rules override the defaults in the references.
 2. Read `GLOSSARY.md` (or `GLOSSARY-MAP.md` and the relevant context glossary) and the titles in `docs/adr/`. Use the glossary's terms in everything you write.
 3. Resolve the **artifact language** from `rules.md`. When there is no `rules.md`, ask for it once, record it at the top of the ledger, and suggest `/specsmith setup`.
 4. Resolve the feature and its active change (below).

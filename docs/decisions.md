@@ -117,3 +117,9 @@ Build one generic, reusable skill that runs a spec-driven workflow on top of Mat
 **Decision:** When `spec` finds ledger gaps, it closes them with rounds before writing, recording each answer in the ledger; it sends the user back to `grill` only when a whole coverage category was never explored.
 **Why:** In the end-to-end test, four small gaps cost a full extra grill session; asking in place keeps the ledger-first rule without the round trip.
 **Status:** decided
+
+## D-23 - Existing agent rules stay the authority
+**Decision:** When a project already keeps its rules in an agent file every session loads (`AGENTS.md`, `CLAUDE.md`), `setup` records that file as the authority in a new `Authority` section of `rules.md` and writes only specsmith-specific rules; it imports rules into `rules.md` only when no such file exists or the user asks.
+**Why:** Testing `setup` on a real production project showed that copying `AGENTS.md` into `rules.md` creates two sources of truth that drift, which that project's `CLAUDE.md` explicitly forbids.
+**Status:** decided
+

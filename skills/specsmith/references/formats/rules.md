@@ -10,6 +10,10 @@ Each rule carries its reason, so a future reader can tell a rule from an acciden
 ## Language
 Artifacts: <language>
 
+## Authority
+<Existing rule files this file defers to, for example `AGENTS.md`, or "none: this file is the source".>
+<A rule in an authority file wins over any default of the specsmith references; this file never repeats one.>
+
 ## Spec paths
 Pattern: <specs/<feature>/ or a hierarchy such as specs/<system>/<module>/<scope>/>
 <How to classify a feature into the hierarchy, when hierarchical.>
