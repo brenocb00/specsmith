@@ -11,6 +11,7 @@ Ask the first question alone, before anything else: which language the artifacts
 
 Gather the facts yourself:
 
+- environment selection: env files and their variable names (never their values), flags such as `--env` or `--production`, and the code paths that send email, messages, payments, or other effects outside the machine;
 - manifests and scripts (`package.json`, `pyproject.toml`, `Makefile`, `*.csproj`, and the like) for the test, lint, typecheck, and build commands;
 - test configs and test directories, to learn the test layout and naming;
 - the source layout, plus two or three representative modules, to infer architecture layers and conventions;
@@ -28,6 +29,7 @@ Follow `rounds.md`, recording answers straight into `rules.md` rather than a led
 Cover every section of `formats/rules.md`:
 
 - **Authority**: which existing rule files `rules.md` defers to, decided as above. Every later section skips what those files already say.
+- **Environments**: which environments exist (development, test, staging, production), how the project selects one (env files, flags, variables), and which side effects reach the outside world (databases, payment or bank APIs, email and messaging, paid APIs, storage). Ask what each phase may touch. When the authority file says nothing about production, propose the rule for it there, not here.
 - **Spec paths**: flat `specs/<feature>/`, or a hierarchy that mirrors the product (for example `specs/<system>/<module>/<scope>/`). Ask how to classify a feature when it is hierarchical.
 - **Commands**: present the commands you found and ask which are canonical.
 - **Architecture and conventions**: present each inferred pattern as a finding and ask "rule or accident?". A rule enters `rules.md` with its reason.

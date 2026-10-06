@@ -72,6 +72,7 @@ An evolution continues the feature's numbering.
 ## Rules for every phase
 
 - **Facts from the environment, decisions from the user.** Look up anything the codebase, docs, or web can answer. Put every choice between alternatives to the user, with your recommendation.
+- **Stay inside the allowed environments.** Touch databases and external services only as the Environments section of `rules.md` allows. Without that section, only `implement` touches them, and only non-production ones. A fact only production can answer becomes a manual step for the user, with the exact command.
 - **Record as you go.** Write each answer to the ledger, each resolved term to the glossary, and each qualifying ADR the moment it settles, before the next question.
 - **Ledger first.** A decision reaches the spec, plan, tasks, or code only after it is in the ledger. When a later phase meets an undecided question, ask it, record it, then continue.
 - **Stop at the phase boundary.** End the turn after the phase, naming the next command. The user starts the next phase.

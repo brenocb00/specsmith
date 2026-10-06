@@ -14,6 +14,12 @@ Artifacts: <language>
 <Existing rule files this file defers to, for example `AGENTS.md`, or "none: this file is the source".>
 <A rule in an authority file wins over any default of the specsmith references; this file never repeats one.>
 
+## Environments
+<Where the environment rules live (an authority file section, or here), then what each phase may touch.>
+- grill, spec, plan, tasks, doc: <for example "no database or external API; facts come from code and docs">
+- implement: <for example "test database and sandbox APIs only, after checking the env file">
+- Production checks: <for example "a manual step for <person>, with the exact command">
+
 ## Spec paths
 Pattern: <specs/<feature>/ or a hierarchy such as specs/<system>/<module>/<scope>/>
 <How to classify a feature into the hierarchy, when hierarchical.>

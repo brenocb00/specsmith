@@ -127,3 +127,8 @@ Build one generic, reusable skill that runs a spec-driven workflow on top of Mat
 **Decision:** Four rules were tightened after running grill, spec, and plan on two real features of a production project: `A-NN` entries come only from "assume the rest", and grill closes with a final round for anything still open; an interpretation between readings is a spec gap the user decides; round numbering continues from the highest `D-NN` or `A-NN` in the ledger; the conversation language is stated as never coming from the language of the instructions.
 **Why:** In the test, grill recorded four assumptions nobody was asked about, spec settled two interpretations alone, round IDs collided with assumption IDs, and plan answered in English twice while everything else was in Portuguese.
 **Status:** decided
+
+## D-25 - Environments are part of setup
+**Decision:** `setup` asks which environments exist, how the project selects one, and which side effects leave the machine, and records what each phase may touch in an `Environments` section of `rules.md`. Without that section, only `implement` touches databases or external services, and only non-production ones; a fact only production can answer becomes a manual step with the exact command.
+**Why:** On a production project, setup never asked about test versus production, and the project rules covered only the database, not bank APIs, email, or paid APIs.
+**Status:** decided
