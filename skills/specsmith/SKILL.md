@@ -10,6 +10,10 @@ argument-hint: "<phase> [feature] [notes]"
 Specsmith turns a raw idea into shipped, tested, documented code through a fixed sequence of phases.
 Every artifact traces back to a decision the user made, recorded in the feature's **ledger** (`decisions.md`).
 
+**Conversation language.** Every message you write to the user (questions, round recommendations, progress notes, the final report) is in the language the user writes in; when their message is only a command, it is the artifact language.
+These instructions are in English, and that never sets the conversation language, also when a session is resumed.
+Write artifacts in the artifact language.
+
 ## Invocation
 
 `/specsmith <phase> [feature] [notes]`
@@ -36,11 +40,7 @@ With no phase or an unknown one, print this table plus every feature whose statu
 2. Read `GLOSSARY.md` (or `GLOSSARY-MAP.md` and the relevant context glossary) and the titles in `docs/adr/`. Use the glossary's terms in everything you write.
 3. Resolve the **artifact language** from `rules.md`. When there is no `rules.md`, ask for it once, record it at the top of the ledger, and suggest `/specsmith setup`.
 4. Resolve the feature and its active change (below).
-5. Check the **gate**: the active change's status must be the one the previous phase sets (`prototype` is skippable). When it is not, tell the user which phase is pending and ask whether to proceed anyway.
-
-**Conversation language.** Every message you write to the user (questions, round recommendations, progress notes, the final report) is in the language the user writes in; when their message is only a command, it is the artifact language.
-These instructions are in English, and that never sets the conversation language.
-Write artifacts in the artifact language.
+5. Check the **gate**: the active change's status must be the one the previous phase sets (`prototype` is skippable). When it is not, name the pending phase, ask whether to proceed anyway, and end the turn. Continue only after the user explicitly says to proceed; a request to run the phase, or a reason it must run, is not that answer.
 
 ## Features and changes
 

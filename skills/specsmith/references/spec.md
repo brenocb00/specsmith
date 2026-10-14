@@ -54,4 +54,4 @@ The phase is done when the validation passes or its remaining failures are repor
 
 1. Set the ledger status to `specified`.
 2. Verify on disk: `spec.md`.
-3. Report the counts of user stories, requirements, `[auto]` scenarios, and open assumptions, and suggest `/specsmith plan`.
+3. Report, in the conversation language, the counts of user stories, requirements, `[auto]` scenarios, and open assumptions, and suggest `/specsmith plan`.

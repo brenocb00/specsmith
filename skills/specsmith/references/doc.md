@@ -4,7 +4,7 @@ Bring every document in line with what was actually built, then close the change
 
 ## 1. Gather what changed
 
-- the change's ledger, `plan.md`, and `tasks.md`;
+- the change's ledger, `plan.md`, and `tasks.md`, including its baseline of failures that existed before the change;
 - the code diff since the change began (version control when available, otherwise the files named in the plan and tasks);
 - decisions and rules stated in the conversation that the ledger may lack.
 
@@ -38,4 +38,4 @@ The phase is done when every divergence is resolved and every document in the ta
 
 1. Set the ledger status to `done`.
 2. Verify on disk: every file updated.
-3. Report the files updated with one line each, the files checked and left unchanged, and any follow-up.
+3. Report, in the conversation language, the files updated with one line each, the files checked and left unchanged, and any follow-up.

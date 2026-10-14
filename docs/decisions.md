@@ -132,3 +132,13 @@ Build one generic, reusable skill that runs a spec-driven workflow on top of Mat
 **Decision:** `setup` asks which environments exist, how the project selects one, and which side effects leave the machine, and records what each phase may touch in an `Environments` section of `rules.md`. Without that section, only `implement` touches databases or external services, and only non-production ones; a fact only production can answer becomes a manual step with the exact command.
 **Why:** On a production project, setup never asked about test versus production, and the project rules covered only the database, not bank APIs, email, or paid APIs.
 **Status:** decided
+
+## D-26 - Implement stops, resumes, and measures against a baseline
+**Decision:** `implement` never writes `A-NN`: a behaviour question ends the turn with the question, and the next turn resumes from the first unchecked task, with or without the command. A technical choice nobody can observe from outside the code is recorded with `Kind: technical`. Before changing code, `implement` records a baseline of existing test, lint, and typecheck failures in `tasks.md`; "green" means nothing fails outside it, and a new failure counts as flaky only with rerun evidence. `tasks` marks required separate commits with `Commit:` checkpoint lines, and `implement` stops at each one for the user to commit. Every turn of `implement` ends by closing the phase when all tasks are done. The gate ends the turn and waits for an explicit answer. Tests never print credentials.
+**Why:** Across four features of a production project, implement adopted three UI assumptions instead of asking, compared its E2E failures to nothing while the suite already had ten, merged refactors that the project required in their own commits, and left the status unset after a resumed run; `doc` then ran past the gate, and a test printed the test database password.
+**Status:** decided
+
+## D-27 - Conversation language at the top and in every report
+**Decision:** The conversation-language rule opens `SKILL.md`, states that it also holds when a session is resumed, and every phase's report step says to report in the conversation language.
+**Why:** After D-24, a resumed grill still answered in English to a Portuguese message, so the orchestrator had to append "answer in Portuguese" to every prompt.
+**Status:** decided

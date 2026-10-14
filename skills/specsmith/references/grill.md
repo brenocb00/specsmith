@@ -63,5 +63,5 @@ Anything still open, including points that feel obvious (no new permission, an a
 
 1. Set the ledger status to `grilled`.
 2. Verify on disk: the ledger, the glossary, any ADRs.
-3. Report the counts of decisions, assumptions, glossary terms, and ADRs, plus any category marked out of scope.
+3. Report, in the conversation language, the counts of decisions, assumptions, glossary terms, and ADRs, plus any category marked out of scope.
 4. Suggest `/specsmith spec`, or `/specsmith prototype` first when the feature introduces a new or complex screen.

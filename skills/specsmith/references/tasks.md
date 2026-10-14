@@ -12,8 +12,14 @@ Write `<change>/tasks.md` from `formats/tasks.md`.
 
 **Phases**
 
-- **Foundation**, only when a real prerequisite blocks every story (a new dependency, a schema migration). Omit it otherwise.
+- **Foundation**, only when a real prerequisite blocks every story (a new dependency, a schema migration, a refactor the plan or `rules.md` require before the feature, such as extracting code from an oversized file). Omit it otherwise.
 - **One phase per user story**, in the spec's priority order. Each phase is a vertical slice: when it is done, its story works and its tests are green on their own.
+
+**Commit checkpoints**
+
+When `rules.md` or the plan require a unit of work to land in its own commit (a pure refactor before the feature, a migration), end that unit with a `Commit:` line carrying the proposed message.
+`implement` stops at each one for the user to commit.
+Add none where nothing requires a separate commit.
 
 **Order inside a story phase**
 
@@ -67,4 +73,4 @@ The phase is done when every story has its test, implementation, and verificatio
 
 1. Set the ledger status to `tasked`.
 2. Verify on disk: `tasks.md`.
-3. Report the task count per story, the parallel opportunities, and the open findings by severity, and suggest `/specsmith implement`. Open CRITICAL findings block `implement` until resolved or waived by the user.
+3. Report, in the conversation language, the task count per story, the parallel opportunities, and the open findings by severity, and suggest `/specsmith implement`. Open CRITICAL findings block `implement` until resolved or waived by the user.

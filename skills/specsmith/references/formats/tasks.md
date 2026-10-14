@@ -13,6 +13,7 @@ change: root | evolutions/NNN-<slug>
 
 ## Foundation (only when a prerequisite blocks every story)
 - [ ] T001 <description> in <path>
+- Commit: refactor: <proposed message>
 
 ## US-1 - <title> (P1)
 Goal: <what works when this phase is done>
@@ -32,6 +33,10 @@ Goal: <what works when this phase is done>
 
 Coverage: <requirements with at least one task> / <total requirements>; `[auto]` scenarios with a test task: <n> / <total>.
 
+## Baseline (written by implement before any change)
+<date>, <commit>: <test, lint, and typecheck commands> - <n> passed, <n> failed.
+- <test file> › <test name>: <one-line failure reason>
+
 ## Coverage matrix (written by implement)
 | Scenario | Requirement | Test or verification | Status |
 |----------|-------------|----------------------|--------|
@@ -46,3 +51,4 @@ Coverage: <requirements with at least one task> / <total requirements>; `[auto]`
 - Task IDs are sequential in execution order and unique within the feature.
 - `[US<N>]` appears on every task inside a story phase and nowhere else.
 - One task per architecture layer per story; a layer task may create several files in one folder.
+- A checkpoint line `- Commit: <proposed message>` has no checkbox and no ID; it closes the unit of work above it, back to the previous checkpoint or the start of its phase.

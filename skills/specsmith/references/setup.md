@@ -49,4 +49,4 @@ Add the suggestion hook line only when the user said yes.
 ## 5. Close
 
 The phase is done when every section of `rules.md` holds content or an explicit "none", and the user confirmed it.
-Verify the file on disk, report its sections in one line each, and suggest `/specsmith grill <idea>`.
+Verify the file on disk, report its sections in one line each, in the conversation language, and suggest `/specsmith grill <idea>`.

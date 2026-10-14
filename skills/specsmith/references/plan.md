@@ -33,4 +33,4 @@ The phase is done when every technical question is answered by a source or a led
 
 1. Set the ledger status to `planned`.
 2. Verify on disk: `plan.md`, `data-model.md` when written, the ledger, any ADRs.
-3. Report the files the change will touch, the new decisions, and suggest `/specsmith tasks`.
+3. Report, in the conversation language, the files the change will touch, the new decisions, and suggest `/specsmith tasks`.

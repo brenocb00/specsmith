@@ -33,4 +33,4 @@ The phase is done when the user approves the prototype and every behaviour it sh
 
 1. Set the ledger status to `prototyped`.
 2. Verify on disk: the prototype and the ledger.
-3. Report the path, the decisions added during iteration, and suggest `/specsmith spec`.
+3. Report, in the conversation language, the path, the decisions added during iteration, and suggest `/specsmith spec`.
