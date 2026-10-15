@@ -1,6 +1,6 @@
-# specsmith
+# Specsmith
 
-A spec-driven feature workflow for coding agents, built on relentless grilling.
+Decision-driven specs workflow for coding agents, built on relentless grilling with end-to-end traceability.
 
 Specsmith combines two ideas:
 
