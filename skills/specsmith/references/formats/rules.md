@@ -19,12 +19,18 @@ Artifacts: <language>
 - grill, spec, plan, tasks, doc: <for example "no database or external API; facts come from code and docs">
 - implement: <for example "test database and sandbox APIs only, after checking the env file">
 - Production checks: <for example "a manual step for <person>, with the exact command">
+- Data that cannot be regenerated: <every store that would lose real data if wiped, whatever its environment is called, for example "`dev.db`: holds the user's real trades; no phase writes to it, and no command may overwrite or delete it", or "none">
+
+## Artifact locations
+- ADRs: <`docs/adr/` by default, an existing decision-record folder, or "none: no ADRs">
+- Glossary: <`GLOSSARY.md` by default, or an existing glossary or glossary map>
 
 ## Spec paths
 Pattern: <specs/<feature>/ or a hierarchy such as specs/<system>/<module>/<scope>/>
 <How to classify a feature into the hierarchy, when hierarchical.>
 
 ## Commands
+<Every command here only checks: it never writes source files, schema, or data beyond what the test itself creates and removes. Record the checking variant, for example `prettier --check`, not `prettier --write`.>
 - Unit tests: <command>
 - Integration tests: <command or none>
 - End-to-end: <command or none>

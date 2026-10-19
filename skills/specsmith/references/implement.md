@@ -15,6 +15,8 @@ This holds whether the turn starts with the command or with a plain request to c
 ## 2. Baseline
 
 Before changing any code, run the full test suite, lint, and typecheck from `rules.md`.
+Check the working tree with version control (`git status`) before and after the run.
+When the run changed any file, stop: a command writes instead of checking. Report the command and the changed files, leave them as they are for the user to inspect, and ask for a checking variant to record in `rules.md`.
 Write every failure to the baseline section of `tasks.md` (`formats/tasks.md`): these are the failures the change did not cause.
 An empty baseline is written too, as "no failures".
 

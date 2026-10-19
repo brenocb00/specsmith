@@ -37,7 +37,7 @@ With no phase or an unknown one, print this table plus every feature whose statu
 `setup` runs steps 1 and 2; the other phases run all five.
 
 1. Read `docs/specsmith/rules.md` when it exists, plus every authority file it names. Their rules override the defaults in the references.
-2. Read `GLOSSARY.md` (or `GLOSSARY-MAP.md` and the relevant context glossary) and the titles in `docs/adr/`. Use the glossary's terms in everything you write.
+2. Read `GLOSSARY.md` (or `GLOSSARY-MAP.md` and the relevant context glossary) and the titles in `docs/adr/`. Use the glossary's terms in everything you write. When the Artifact locations section of `rules.md` names other locations, every mention of these two paths in the references means those locations; with ADRs set to "none", no phase offers an ADR.
 3. Resolve the **artifact language** from `rules.md`. When there is no `rules.md`, ask for it once, record it at the top of the ledger, and suggest `/specsmith setup`.
 4. Resolve the feature and its active change (below).
 5. Check the **gate**: the active change's status must be the one the previous phase sets (`prototype` is skippable). When it is not, name the pending phase, ask whether to proceed anyway, and end the turn. Continue only after the user explicitly says to proceed; a request to run the phase, or a reason it must run, is not that answer.
@@ -72,7 +72,7 @@ An evolution continues the feature's numbering.
 ## Rules for every phase
 
 - **Facts from the environment, decisions from the user.** Look up anything the codebase, docs, or web can answer. Put every choice between alternatives to the user, with your recommendation.
-- **Stay inside the allowed environments.** Touch databases and external services only as the Environments section of `rules.md` allows. Without that section, only `implement` touches them, and only non-production ones. A fact only production can answer becomes a manual step for the user, with the exact command.
+- **Stay inside the allowed environments.** Touch databases and external services only as the Environments section of `rules.md` allows. Without that section, only `implement` touches them, and only a store it can prove disposable: created and removed by the tests themselves, or in memory. Any other store is production, whatever it is called; so is any store that holds data nobody can regenerate. A fact only production can answer becomes a manual step for the user, with the exact command.
 - **Record as you go.** Write each answer to the ledger, each resolved term to the glossary, and each qualifying ADR the moment it settles, before the next question.
 - **Ledger first.** A decision reaches the spec, plan, tasks, or code only after it is in the ledger. When a later phase meets an undecided question, ask it, record it, then continue.
 - **Stop at the phase boundary.** End the turn after the phase, naming the next command. The user starts the next phase.

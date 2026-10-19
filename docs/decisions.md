@@ -61,7 +61,7 @@ Build one generic, reusable skill that runs a spec-driven workflow on top of Mat
 ## D-11 - What setup records
 **Decision:** Artifact language, spec path pattern, canonical commands, architecture and conventions with reasons, workflow constraints, documentation targets, and an optional suggestion hook in `AGENTS.md` or `CLAUDE.md`.
 **Why:** These are what an agent cannot find by looking; one-lookup facts stay in the environment.
-**Status:** decided
+**Status:** decided (extended by D-28 and D-29)
 
 ## D-12 - Invocation and gates
 **Decision:** The skill fires only when the user types it, and every phase stops at its end and names the next command. Interception of natural-language feature requests becomes an optional one-line suggestion hook.
@@ -131,7 +131,7 @@ Build one generic, reusable skill that runs a spec-driven workflow on top of Mat
 ## D-25 - Environments are part of setup
 **Decision:** `setup` asks which environments exist, how the project selects one, and which side effects leave the machine, and records what each phase may touch in an `Environments` section of `rules.md`. Without that section, only `implement` touches databases or external services, and only non-production ones; a fact only production can answer becomes a manual step with the exact command.
 **Why:** On a production project, setup never asked about test versus production, and the project rules covered only the database, not bank APIs, email, or paid APIs.
-**Status:** decided
+**Status:** decided (default refined by D-28)
 
 ## D-26 - Implement stops, resumes, and measures against a baseline
 **Decision:** `implement` never writes `A-NN`: a behaviour question ends the turn with the question, and the next turn resumes from the first unchecked task, with or without the command. A technical choice nobody can observe from outside the code is recorded with `Kind: technical`. Before changing code, `implement` records a baseline of existing test, lint, and typecheck failures in `tasks.md`; "green" means nothing fails outside it, and a new failure counts as flaky only with rerun evidence. `tasks` marks required separate commits with `Commit:` checkpoint lines, and `implement` stops at each one for the user to commit. Every turn of `implement` ends by closing the phase when all tasks are done. The gate ends the turn and waits for an explicit answer. Tests never print credentials.
@@ -141,4 +141,14 @@ Build one generic, reusable skill that runs a spec-driven workflow on top of Mat
 ## D-27 - Conversation language at the top and in every report
 **Decision:** The conversation-language rule opens `SKILL.md`, states that it also holds when a session is resumed, and every phase's report step says to report in the conversation language.
 **Why:** After D-24, a resumed grill still answered in English to a Portuguese message, so the orchestrator had to append "answer in Portuguese" to every prompt.
+**Status:** decided
+
+## D-28 - Commands only check, and real data is production whatever its name
+**Decision:** `setup` reads each command's full definition and records only checking commands; one that writes files, schema, or data gets a checking variant or is replaced. `implement` checks the working tree before and after the baseline run and stops when it changed. `setup` asks, for each data store, whether it could be fully regenerated if wiped, and records the stores that could not under Environments. Without that section, `implement` touches only stores it can prove disposable; any other store is production, whatever its environment is called.
+**Why:** A baseline run of `eslint --fix` or `prettier --write` would rewrite the repository before the change began. In a local-first single-user app the development database holds real data, and an agent following D-25 would have treated it as safe because it was not called production.
+**Status:** decided
+
+## D-29 - Artifact locations
+**Decision:** `rules.md` gains an Artifact locations section for ADRs and the glossary, filled by `setup` from existing records: use the existing location or create the default. ADRs may be "none", in which case the rationale stays in the ledger; the glossary always has a location. Planning and history documents stay under Documentation targets. The README gains a "When not to use it" section instead of a lighter mode.
+**Why:** The ADR format already deferred to a location in `rules.md` that no section held and `setup` never asked about. Skipping the glossary would add a special case to every phase that reads it. A lighter mode would break the guarantee that every decision reaches the ledger (D-12).
 **Status:** decided

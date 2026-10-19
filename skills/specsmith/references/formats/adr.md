@@ -2,7 +2,7 @@
 
 Adapted from Matt Pocock's `domain-modeling` skill (MIT).
 Number sequentially from the highest existing file; create `docs/adr/` lazily with the first ADR.
-When the project already keeps decision records elsewhere, `rules.md` names that location and it wins.
+When the project already keeps decision records elsewhere, the Artifact locations section of `rules.md` names that location and it wins; when it says "none", the rationale stays in the ledger entry.
 
 ```markdown
 # <Short title of the decision>

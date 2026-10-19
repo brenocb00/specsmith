@@ -12,7 +12,9 @@ Ask the first question alone, before anything else: which language the artifacts
 Gather the facts yourself:
 
 - environment selection: env files and their variable names (never their values), flags such as `--env` or `--production`, and the code paths that send email, messages, payments, or other effects outside the machine;
-- manifests and scripts (`package.json`, `pyproject.toml`, `Makefile`, `*.csproj`, and the like) for the test, lint, typecheck, and build commands;
+- data stores: database files, connection settings, and the code or scripts that create, seed, migrate, or reset them;
+- manifests and scripts (`package.json`, `pyproject.toml`, `Makefile`, `*.csproj`, and the like) for the test, lint, typecheck, and build commands. Read each command's full definition, including the scripts and test setup it calls, and note whatever writes files, schema, or data (fixing or formatting flags, migrations, seeds, resets);
+- existing decision records (`docs/adr/`, `docs/decisions/`, `adr/`, and the like) and glossaries;
 - test configs and test directories, to learn the test layout and naming;
 - the source layout, plus two or three representative modules, to infer architecture layers and conventions;
 - existing agent rules: `AGENTS.md`, `CLAUDE.md`, `.github/copilot-instructions.md`, `.cursor/rules`, `.agents/rules/`, `CONTRIBUTING.md`;
@@ -30,8 +32,10 @@ Cover every section of `formats/rules.md`:
 
 - **Authority**: which existing rule files `rules.md` defers to, decided as above. Every later section skips what those files already say.
 - **Environments**: which environments exist (development, test, staging, production), how the project selects one (env files, flags, variables), and which side effects reach the outside world (databases, payment or bank APIs, email and messaging, paid APIs, storage). Ask what each phase may touch. When the authority file says nothing about production, propose the rule for it there, not here.
+For each data store, whatever its environment is called, ask: "if it were wiped, could it be fully regenerated?" A store that could not holds real data and is treated as production.
 - **Spec paths**: flat `specs/<feature>/`, or a hierarchy that mirrors the product (for example `specs/<system>/<module>/<scope>/`). Ask how to classify a feature when it is hierarchical.
-- **Commands**: present the commands you found and ask which are canonical.
+- **Commands**: present the commands you found and ask which are canonical. Every recorded command only checks: for one that writes, propose its checking variant and ask; when none exists, ask how to check instead.
+- **Artifact locations**: for ADRs and the glossary, present any existing location you found and ask whether to use it or create the default one. ADRs may be "none"; the glossary always has a location. Existing planning and history documents belong to Documentation targets, not here.
 - **Architecture and conventions**: present each inferred pattern as a finding and ask "rule or accident?". A rule enters `rules.md` with its reason.
 - **Workflow constraints**: task kinds `tasks` never generates, sections every spec must include, manual steps the user must be told about.
 - **Documentation targets**: extra docs `doc` keeps in sync, each with its purpose.
