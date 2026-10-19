@@ -19,7 +19,8 @@ Artifacts: <language>
 - grill, spec, plan, tasks, doc: <for example "no database or external API; facts come from code and docs">
 - implement: <for example "test database and sandbox APIs only, after checking the env file">
 - Production checks: <for example "a manual step for <person>, with the exact command">
-- Data that cannot be regenerated: <every store that would lose real data if wiped, whatever its environment is called, for example "`dev.db`: holds the user's real trades; no phase writes to it, and no command may overwrite or delete it", or "none">
+- Data that cannot be regenerated: <every store that would lose real data if wiped, whatever its environment is called, or "none". No phase writes to these, and no command may overwrite or delete them.>
+  - `<store>`: <what it holds>. Guard: <a check run before every command that proves the command cannot reach the store, for example "`DB_NAME` in `.env` ends in `_teste`" or "the app is stopped and `DATABASE_URL` points to a temporary file">. Backup: <a command that copies the store, or "none">.
 
 ## Artifact locations
 - ADRs: <`docs/adr/` by default, an existing decision-record folder, or "none: no ADRs">

@@ -146,9 +146,14 @@ Build one generic, reusable skill that runs a spec-driven workflow on top of Mat
 ## D-28 - Commands only check, and real data is production whatever its name
 **Decision:** `setup` reads each command's full definition and records only checking commands; one that writes files, schema, or data gets a checking variant or is replaced. `implement` checks the working tree before and after the baseline run and stops when it changed. `setup` asks, for each data store, whether it could be fully regenerated if wiped, and records the stores that could not under Environments. Without that section, `implement` touches only stores it can prove disposable; any other store is production, whatever its environment is called.
 **Why:** A baseline run of `eslint --fix` or `prettier --write` would rewrite the repository before the change began. In a local-first single-user app the development database holds real data, and an agent following D-25 would have treated it as safe because it was not called production.
-**Status:** decided
+**Status:** decided (run-time checks refined by D-30)
 
 ## D-29 - Artifact locations
 **Decision:** `rules.md` gains an Artifact locations section for ADRs and the glossary, filled by `setup` from existing records: use the existing location or create the default. ADRs may be "none", in which case the rationale stays in the ledger; the glossary always has a location. Planning and history documents stay under Documentation targets. The README gains a "When not to use it" section instead of a lighter mode.
 **Why:** The ADR format already deferred to a location in `rules.md` that no section held and `setup` never asked about. Skipping the glossary would add a special case to every phase that reads it. A lighter mode would break the guarantee that every decision reaches the ledger (D-12).
+**Status:** decided
+
+## D-30 - Guards around every command run
+**Decision:** Every run of a command from `rules.md` in `implement`, not only the baseline, goes through guards. Before the run, the guard of each store under "Data that cannot be regenerated" must pass, or the command does not run; `setup` records that guard (usually the setting that selects the store and the value it must not hold) and an optional backup command, which runs once before the baseline. Around the run, a snapshot of the working tree's content (the diff against the last commit plus untracked files with content hashes) must not change.
+**Why:** The `git status` check from D-28 cannot see gitignored files, where irreplaceable databases usually live, and misses a write to a file that was already modified. Checking before the run prevents the damage instead of detecting it afterwards, which matters because the data cannot be rebuilt and a live app may write to its store on its own, making a before-and-after fingerprint noisy. Tests run in every story, so a guard around the baseline alone would cover one run out of many.
 **Status:** decided
