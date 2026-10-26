@@ -28,6 +28,7 @@ grill → prototype (optional) → spec → plan → tasks → implement → doc
 | `/specsmith tasks` | Writes `tasks.md` story by story, test-first, then checks spec, plan, and tasks for consistency. |
 | `/specsmith implement` | Executes the tasks red → green, story by story, and records the coverage matrix. |
 | `/specsmith doc` | Reconciles the docs with the built code and closes the change. |
+| `/specsmith assess [point]` | At any time, gives an honest assessment of one point (a decision, a recommendation, your own argument, or a new idea): facts checked, pros and cons, and a verdict that may agree or disagree. |
 
 Each phase stops at its end; you start the next one.
 

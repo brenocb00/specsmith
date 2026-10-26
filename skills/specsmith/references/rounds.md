@@ -41,6 +41,14 @@ A question whose answer depends on another question still open in this round bel
 When an answer is ambiguous, ask a short follow-up under the same ID.
 When an answer contradicts an earlier decision, ask which one stands, then mark the loser `superseded by D-NN`.
 
+## Pushback
+
+When the user disputes a recommendation or answers with an argument instead of a choice, weigh the argument before recording anything.
+In two or three lines, say what it gets right, what it leaves out, and whether you keep or change your recommendation; check any fact it rests on first.
+Then let the user decide.
+Never change a recommendation only because the user insisted, and never keep one only because you made it.
+For a full analysis of any point, the user runs `/specsmith assess`.
+
 ## Facts versus decisions
 
 Finding facts is your job.

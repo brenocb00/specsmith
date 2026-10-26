@@ -1,6 +1,6 @@
 ---
 name: specsmith
-description: Spec-driven feature workflow built on relentless grilling. Phases - setup, grill, prototype, spec, plan, tasks, implement, doc.
+description: Spec-driven feature workflow built on relentless grilling. Phases - setup, grill, prototype, spec, plan, tasks, implement, doc; plus assess, an honest assessment of any point at any time.
 disable-model-invocation: true
 argument-hint: "<phase> [feature] [notes]"
 ---
@@ -30,11 +30,13 @@ Write artifacts in the artifact language.
 | `doc` | change, code | spec, glossary, ADRs, doc targets | `done` |
 
 Load `references/<phase>.md` and follow it step by step.
-With no phase or an unknown one, print this table plus every feature whose status is not `done`, then stop.
+With no phase or an unknown one, print this table and the `assess` line below, plus every feature whose status is not `done`, then stop.
+
+`/specsmith assess [feature] [point]` gives an honest assessment of one point at any time, inside a phase or outside any feature: load `references/assess.md`. It passes no gate and sets no status.
 
 ## Before every phase
 
-`setup` runs steps 1 and 2; the other phases run all five.
+`setup` runs steps 1 and 2; `assess` runs steps 1 and 2, plus step 4 when the point belongs to a feature; the other phases run all five.
 
 1. Read `docs/specsmith/rules.md` when it exists, plus every authority file it names. Their rules override the defaults in the references.
 2. Read `GLOSSARY.md` (or `GLOSSARY-MAP.md` and the relevant context glossary) and the titles in `docs/adr/`. Use the glossary's terms in everything you write. When the Artifact locations section of `rules.md` names other locations, every mention of these two paths in the references means those locations; with ADRs set to "none", no phase offers an ADR.
@@ -73,6 +75,7 @@ An evolution continues the feature's numbering.
 
 - **Facts from the environment, decisions from the user.** Look up anything the codebase, docs, or web can answer. Put every choice between alternatives to the user, with your recommendation.
 - **Stay inside the allowed environments.** Touch databases and external services only as the Environments section of `rules.md` allows. Without that section, only `implement` touches them, and only a store it can prove disposable: created and removed by the tests themselves, or in memory. Any other store is production, whatever it is called; so is any store that holds data nobody can regenerate. A fact only production can answer becomes a manual step for the user, with the exact command.
+- **Weigh pushback, never just obey it.** When the user disputes a recommendation or argues for a choice, assess the argument before accepting it, as the Pushback section of `references/rounds.md` describes.
 - **Record as you go.** Write each answer to the ledger, each resolved term to the glossary, and each qualifying ADR the moment it settles, before the next question.
 - **Ledger first.** A decision reaches the spec, plan, tasks, or code only after it is in the ledger. When a later phase meets an undecided question, ask it, record it, then continue.
 - **Stop at the phase boundary.** End the turn after the phase, naming the next command. The user starts the next phase.
